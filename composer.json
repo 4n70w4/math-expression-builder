@@ -1,0 +1,13 @@
+{
+  "name": "4n70w4/math-expression-builder",
+  "description": "Math Expression Builder",
+  "require": {
+    "php": ">=7.3.0",
+    "ext-bcmath": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "MathExpressionBuilder\\": "./src/"
+    }
+  }
+}
