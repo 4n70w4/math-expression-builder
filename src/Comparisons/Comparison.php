@@ -1,44 +1,34 @@
 <?php
 
-
 namespace MathExpressionBuilder\Comparisons;
-
 
 use MathExpressionBuilder\Expressionable;
 
-abstract class Comparison implements Expressionable {
-
+abstract class Comparison implements Expressionable
+{
     /**
      * @var Expressionable
      */
     protected $value;
 
-
-
-    public function __construct(Expressionable $value) {
+    public function __construct(Expressionable $value)
+    {
         $this->value = $value;
     }
 
-
-
-    public function calc() {
-        return;
+    public function calc()
+    {
     }
-
-
 
     abstract public function compare(Expressionable $value);
 
     abstract public function getSign();
 
-
-
     /**
      * @return Expressionable
      */
-    public function getValue() : Expressionable {
+    public function getValue(): Expressionable
+    {
         return $this->value;
     }
-
-
 }

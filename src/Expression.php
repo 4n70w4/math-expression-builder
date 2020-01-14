@@ -1,12 +1,9 @@
 <?php
 
-
 namespace MathExpressionBuilder;
 
-
-class Expression implements Expressionable {
-
-
+class Expression implements Expressionable
+{
     /**
      * @var Expressionable
      */
@@ -14,46 +11,39 @@ class Expression implements Expressionable {
     protected $name;
     private $description;
 
-
-
-    public function __construct(Expressionable $expression, $name, $description = null) {
+    public function __construct(Expressionable $expression, $name, $description = null)
+    {
         $this->expression = $expression;
         $this->name = $name;
         $this->description = $description;
     }
 
-
-
-    public function calc() {
+    public function calc()
+    {
         return $this->expression->calc();
     }
-
-
 
     /**
      * @return mixed
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
-
-
 
     /**
      * @return Expressionable
      */
-    public function getExpression() : Expressionable {
+    public function getExpression(): Expressionable
+    {
         return $this->expression;
     }
-
-
 
     /**
      * @return null
      */
-    public function getDescription() {
+    public function getDescription()
+    {
         return $this->description;
     }
-
-
 }

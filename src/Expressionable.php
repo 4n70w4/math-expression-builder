@@ -1,11 +1,9 @@
 <?php
 
-
 namespace MathExpressionBuilder;
 
-
-interface Expressionable {
-
+interface Expressionable
+{
     public function calc();
 
 //    public function getName();
@@ -16,6 +14,4 @@ interface Expressionable {
      * @return Expressionable[]
      */
 //    public function getExpressions();
-
-
 }

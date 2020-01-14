@@ -1,26 +1,18 @@
 <?php
 
-
 namespace MathExpressionBuilder;
 
-
-class Constant implements Expressionable {
-
-
+class Constant implements Expressionable
+{
     private $value;
 
-
-
-    public function __construct($value) {
+    public function __construct($value)
+    {
         $this->value = $value;
     }
 
-
-
-    public function calc() {
+    public function calc()
+    {
         return $this->value;
     }
-
-
-
 }

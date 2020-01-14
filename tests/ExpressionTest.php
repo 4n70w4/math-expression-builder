@@ -5,23 +5,20 @@ namespace App\Services\BankruptcyCalculatorService\Tests;
 use MathExpressionBuilder\Brackets;
 use MathExpressionBuilder\Expression;
 use MathExpressionBuilder\Formatter\Json;
-use MathExpressionBuilder\Formatter\KatexEquation;
 use MathExpressionBuilder\Formatter\TextEquation;
 use MathExpressionBuilder\Formatter\TextSolution;
 use MathExpressionBuilder\Operators\Sum;
 use MathExpressionBuilder\Value;
 use PHPUnit\Framework\TestCase;
 
-class ExpressionTest extends TestCase {
-
-
-
-    public function testValue() {
+class ExpressionTest extends TestCase
+{
+    public function testValue()
+    {
         $a = new Value(12, 'A');
 
         $result = $a->calc();
         $this->assertEquals(12, $result);
-
 
         $json = new Json();
 
@@ -31,32 +28,29 @@ class ExpressionTest extends TestCase {
         $text = new TextEquation();
 
         $result = $text->format($a);
-        $this->assertEquals( 'A', $result);
+        $this->assertEquals('A', $result);
 
         $text = new TextSolution();
 
         $result = $text->format($a);
-        $this->assertEquals( '12', $result);
+        $this->assertEquals('12', $result);
 
-
-/*        $katex = new Katex();
-
-        $result = $katex->equation($a);
-        $this->assertEquals( 'A', $result);
-
-        $result = $katex->solution($a);
-        $this->assertEquals( '12', $result);*/
+        /*        $katex = new Katex();
+        
+                $result = $katex->equation($a);
+                $this->assertEquals( 'A', $result);
+        
+                $result = $katex->solution($a);
+                $this->assertEquals( '12', $result);*/
     }
 
-
-
-    public function testExpression() {
+    public function testExpression()
+    {
         $a = new Value(12, 'A');
         $x = new Expression($a, 'X');
 
         $result = $x->calc();
         $this->assertEquals(12, $result);
-
 
         $json = new Json();
 
@@ -73,19 +67,17 @@ class ExpressionTest extends TestCase {
         $result = $text->format($x);
         $this->assertEquals('X = 12', $result);
 
-
-/*        $katex = new Katex();
-
-        $result = $katex->equation($x);
-        $this->assertEquals('X = A', $result);
-
-        $result = $katex->solution($x);
-        $this->assertEquals('X = 12', $result);*/
+        /*        $katex = new Katex();
+        
+                $result = $katex->equation($x);
+                $this->assertEquals('X = A', $result);
+        
+                $result = $katex->solution($x);
+                $this->assertEquals('X = 12', $result);*/
     }
 
-
-
-    public function testNestedExpression() {
+    public function testNestedExpression()
+    {
         $a = new Value(12, 'A');
 
         $x = new Expression($a, 'X');
@@ -93,7 +85,6 @@ class ExpressionTest extends TestCase {
 
         $result = $y->calc();
         $this->assertEquals(12, $result);
-
 
         $json = new Json();
 
@@ -110,19 +101,17 @@ class ExpressionTest extends TestCase {
         $result = $text->format($y);
         $this->assertEquals('Y = X = 12', $result);
 
-
-/*        $katex = new Katex();
-
-        $result = $katex->equation($y);
-        $this->assertEquals('Y = X = A', $result);
-
-        $result = $katex->solution($y);
-        $this->assertEquals('Y = X = 12', $result);*/
+        /*        $katex = new Katex();
+        
+                $result = $katex->equation($y);
+                $this->assertEquals('Y = X = A', $result);
+        
+                $result = $katex->solution($y);
+                $this->assertEquals('Y = X = 12', $result);*/
     }
 
-
-
-    public function testSum() {
+    public function testSum()
+    {
         $a = new Value(12, 'A');
         $b = new Value(3, 'B');
 
@@ -131,7 +120,6 @@ class ExpressionTest extends TestCase {
         $result = $t1->calc();
         $this->assertEquals(15, $result);
 
-
         $json = new Json();
 
         $result = $json->format($t1);
@@ -139,8 +127,8 @@ class ExpressionTest extends TestCase {
         $expected = [
             'sum' => [
                 ['value' => 12, 'name' => 'A'],
-                ['value' => 3, 'name' => 'B']
-            ]
+                ['value' => 3, 'name' => 'B'],
+            ],
         ];
 
         $this->assertEquals($expected, $result);
@@ -155,19 +143,17 @@ class ExpressionTest extends TestCase {
         $result = $text->format($t1);
         $this->assertEquals('12 + 3', $result);
 
-
-/*        $katex = new Text();
-
-        $result = $katex->equation($t1);
-        $this->assertEquals('A + B', $result);
-
-        $result = $katex->solution($t1);
-        $this->assertEquals('12 + 3', $result);*/
+        /*        $katex = new Text();
+        
+                $result = $katex->equation($t1);
+                $this->assertEquals('A + B', $result);
+        
+                $result = $katex->solution($t1);
+                $this->assertEquals('12 + 3', $result);*/
     }
 
-
-
-    public function testNestedSum() {
+    public function testNestedSum()
+    {
         $a = new Value(12, 'A');
         $b = new Value(3, 'B');
         $c = new Value(5, 'C');
@@ -178,7 +164,6 @@ class ExpressionTest extends TestCase {
         $result = $y->calc();
         $this->assertEquals(20, $result);
 
-
         $json = new Json();
 
         $result = $json->format($y);
@@ -188,11 +173,11 @@ class ExpressionTest extends TestCase {
                 [
                     'sum' => [
                         ['value' => 12, 'name' => 'A'],
-                        ['value' => 3, 'name' => 'B']
-                    ]
+                        ['value' => 3, 'name' => 'B'],
+                    ],
                 ],
-                ['value' => 5, 'name' => 'C']
-            ]
+                ['value' => 5, 'name' => 'C'],
+            ],
         ];
 
         $this->assertEquals($expected, $result);
@@ -207,19 +192,17 @@ class ExpressionTest extends TestCase {
         $result = $text->format($y);
         $this->assertEquals('12 + 3 + 5', $result);
 
-
-/*        $katex = new Text();
-
-        $result = $katex->equation($y);
-        $this->assertEquals('A + B + C', $result);
-
-        $result = $katex->solution($y);
-        $this->assertEquals('12 + 3 + 5', $result);*/
+        /*        $katex = new Text();
+        
+                $result = $katex->equation($y);
+                $this->assertEquals('A + B + C', $result);
+        
+                $result = $katex->solution($y);
+                $this->assertEquals('12 + 3 + 5', $result);*/
     }
 
-
-
-    public function testBrackets() {
+    public function testBrackets()
+    {
         $a = new Value(12, 'A');
         $b = new Value(3, 'B');
         $c = new Value(5, 'C');
@@ -232,7 +215,6 @@ class ExpressionTest extends TestCase {
 
         $result = $t1->calc();
         $this->assertEquals(20, $result);
-
 
         $json = new Json();
 
@@ -263,15 +245,12 @@ class ExpressionTest extends TestCase {
         $result = $text->format($t1);
         $this->assertEquals('12 + (3 + 5)', $result);
 
-
-/*        $katex = new Text();
-
-        $result = $katex->equation($t1);
-        $this->assertEquals('A + (B + C)', $result);
-
-        $result = $katex->solution($t1);
-        $this->assertEquals('12 + (3 + 5)', $result);*/
+        /*        $katex = new Text();
+        
+                $result = $katex->equation($t1);
+                $this->assertEquals('A + (B + C)', $result);
+        
+                $result = $katex->solution($t1);
+                $this->assertEquals('12 + (3 + 5)', $result);*/
     }
-
-
 }

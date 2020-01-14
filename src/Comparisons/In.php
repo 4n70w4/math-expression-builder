@@ -1,9 +1,7 @@
 <?php
 
-
 namespace MathExpressionBuilder\Comparisons;
 
-
-class In extends Comparison {
-
+class In extends Comparison
+{
 }
